@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="static/css/style.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- ✅ CSS Styling -->
+    <style>
+        .popup-message {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            padding: 18px 30px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fbf8f8;
+            /* background-color: #dc3545; */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 9999;
+            box-shadow: 0 4px 12px rgba(188, 106, 106, 0.4);
+            animation: fadeInOut 4s ease forwards;
+            max-width: 320px;
+            word-wrap: break-word;
+            border-left: 6px solid;
+        }
+
+        /* Success */
+        .popup-success {
+            background: rgba(40, 167, 69, 0.15);
+            border-color: #28a745;
+        }
+
+        /* Error */
+        .popup-error {
+            background: rgba(220, 53, 69, 0.15);
+            border-color: #dc3545;
+        }
+
+        /* Info */
+        .popup-info {
+            background: rgba(0, 123, 255, 0.15);
+            border-color: #007bff;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            10% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            90% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+
+</head>
+
+<body style="background-color: rgb(36, 35, 35); color: whitesmoke;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Offcanvas navbar large">
+        <div class="container-fluid">
+            <a href="/" style="text-decoration: none;">
+                <div class="logo">
+                    <i onclick="location.href='/'" class="fas fa-user-check logo-icon"></i>
+                    Smart Attendance
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2"
+                aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar2"
+                aria-labelledby="offcanvasNavbar2Label">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbar2Label">
+                        Offcanvas
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <!-- Button to Open Modal -->
+                            <a class="nav-link" onclick="openModal()">About<i class="bi bi-chevron-down mx-1"></i></a>
+                        </li>
+                        <!-- Modal Overlay -->
+                        <div class="modal-overlay" id="modal">
+                            <div class="modal-content">
+                                <button class="btn-close" onclick="closeModal()">&times;</button>
+                                <h2>About Smart Attendance</h2>
+                                <p>
+                                    Smart Attendance is a digital system built to simplify and automate the attendance
+                                    process for schools and colleges.
+                                    It supports face or OTP verification, real-time logging, and admin-level tracking.
+                                </p>
+                                <p>
+                                    You can manage subjects, students, and logs, and build a transparent environment for
+                                    educators and learners.
+                                </p>
+
+                                <!-- Extra Close Button -->
+                                <button class="btn-close-modal" onclick="closeModal()">Close</button>
+                            </div>
+                        </div>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="openOpenSourceModal()">Open source<i
+                                    class="bi bi-chevron-down mx-1"></i></a>
+                        </li>
+                        <!-- 🔲 Modal Overlay for Open Source -->
+                        <div class="modal-overlay-opensource" id="openSourceModalOverlay">
+                            <div class="modal-content">
+                                <button class="btn-close-opensource" onclick="closeOpenSourceModal()">&times;</button>
+                                <h2>Smart Attendance - Open Source</h2>
+                                <p>
+                                    Smart Attendance is proudly open-source. We're building a transparent, scalable, and
+                                    community-driven attendance system.
+                                </p>
+                                <p>
+                                    Anyone can contribute to development, documentation, issue reporting, and
+                                    improvements.
+                                </p>
+                                <p>
+                                    Visit our GitHub repository to explore the code and get involved with our mission.
+                                </p>
+
+                                <button class="btn-close-modal-opensource"
+                                    onclick="closeOpenSourceModal()">Close</button>
+                            </div>
+                        </div>
+                        <li class="nav-item"><a onclick="showPricingToast()" class="nav-link">Pricing</i></a></li>
+                        <!-- Toast message -->
+                        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                            <div id="pricingToast" class="toast text-bg-primary" role="alert" aria-live="assertive"
+                                aria-atomic="true">
+                                <div class="toast-header">
+                                    <strong class="me-auto">Smart Attendance</strong>
+                                    <small>Now</small>
+                                </div>
+                                <div class="toast-body">
+                                    Pricing section is currently under development.
+                                </div>
+                            </div>
+                        </div>
+                        <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                    </ul>
+                    <form class="d-flex mt-3 mt-lg-0" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+
+                        <button onclick="location.href='/login'" type="button" class="btn btn-dark btn-sm mx-2">
+                            Sing&nbsp;in
+                        </button>
+
+                        <button onclick="location.href='/logina'" type="button" class="btn btn-outline-danger mx-2">
+                            Sing&nbsp;up
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="static/pexels-googledeepmind-17484899.jpg" class="d-block w-100 img-fluid object-fit-cover"
+                    style="height: 400px;" alt="First slide">
+            </div>
+            <div class="carousel-item">
+                <img src="static/vecteezy_nature-background-high-resolution-wallpaper-for-a-serene_49855471.jpg"
+                    class="d-block w-100 img-fluid object-fit-cover" style="height: 400px;" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img src="static/vecteezy_stunning-high-resolution-nature-and-landscape-backgrounds_49547253.jpg"
+                    class="d-block w-100 img-fluid object-fit-cover" style="height: 400px;" alt="Third slide">
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!-- for herosec1 -->
+    <div class="album py-5 bg-dark text-light">
+        <!-- 2. Popup Box (starts hidden) -->
+        <div id="popup" class="popup-message" style="display: none;"></div>
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+                <div class="col">
+                    <div class="card shadow-sm bg-secondary text-light">
+                        <img src="static/vecteezy_businessman-login-security-system-and-connect-to-the_22213245.jpg"
+                            alt="">
+                        <div class="card-body">
+                            <p class="card-text">SmartAttendance login offers secure access for students and managers
+                                with unique credentials for personalized attendance tracking.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button onclick="window.location.href='/hero1_box1'" type="button" class="btn btn-sm btn-outline-light">View more</button>
+                                    <!-- <button type="button" class="btn btn-sm btn-outline-light">Edit</button> -->
+                                </div>
+                                <small class="text-light">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card shadow-sm bg-secondary text-light">
+                        <img src="static/vecteezy_glowing-blue-wifi-symbol-illuminates-wall-mounted-sign-in_55676014.jpg"
+                            alt="">
+                        <div class="card-body">
+                            <p class="card-text">SmartAttendance works seamlessly within your campus Wi-Fi zone,
+                                ensuring fast, secure, and private access for all users without external internet.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button onclick="window.location.href='/hero1_box2'" type="button" class="btn btn-sm btn-outline-light">View more</button>
+                                    <!-- <button type="button" class="btn btn-sm btn-outline-light">Edit</button> -->
+                                </div>
+                                <small class="text-light">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card shadow-sm bg-secondary text-light">
+                        <img src="static/vecteezy_verification-of-information-with-one-time-password-otp-by_11343416.jpg"
+                            alt="">
+                        <div class="card-body">
+                            <p class="card-text">SmartAttendance uses Gmail-based OTP verification to ensure secure and
+                                authentic user registration before accessing the system.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button onclick="window.location.href='/hero1_box3'" type="button" class="btn btn-sm btn-outline-light">View more</button>
+                                    <!-- <button type="button" class="btn btn-sm btn-outline-light">Edit</button> -->
+                                </div>
+                                <small class="text-light">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- for hero sec -->
+    <div class="container px-4 py-5" id="hanging-icons">
+        <h2 class="pb-2 border-bottom">Key Features</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            <div class="col d-flex align-items-start">
+                <div
+                    class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                    <i class="bi bi-people-fill bg-dark text-info"></i>
+                </div>
+                <div>
+                    <h3 class="fs-2">Multi-Institute Support</h3>
+                    <p>SmartAttendance is built to handle multiple educational institutions within a single platform.
+                        Each institute—whether it's a school, college, university, or coaching center—can create and
+                        manage its own account independently.</p> <a href="/box2_col1" class="btn btn-primary">
+                        Primary button
+                    </a>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <div
+                    class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                    <i class="bi bi-bell bg-dark text-info"></i>
+                </div>
+                <div>
+                    <h3 class="fs-2">Alerts & Notifications</h3>
+                    <p>Notifications can appear directly on the dashboard or be sent via email, depending on user
+                        preferences. This ensures all users stay updated, engaged, and aware of important events without
+                        checking manually.</p> <a href="box2_col2" class="btn btn-primary">
+                        Primary button
+                    </a>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <div
+                    class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                    <i class="bi bi-graph-up bg-dark text-info"></i>
+                </div>
+                <div>
+                    <h3 class="fs-2">Attendance History</h3>
+                    <p>SmartAttendance offers a detailed attendance history for both students and managers. Every
+                        attendance entry is securely stored and easily accessible anytime.Also See your daily, weekly,
+                        and monthly attendance status.</p> <a href="box2_col3" class="btn btn-primary">
+                        Primary button
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- hero sec2 -->
+    <div class="container py-4">
+        <div class="row align-items-md-stretch">
+            <!-- Left Column -->
+            <div class="col-md-6 mb-4">
+                <div class="h-100 p-4 bg-dark text-white rounded-3">
+                    <h2>Network Requirements</h2>
+                    <p>
+                        SmartAttendance is optimized to <code class="text-light">.text-*</code> work within your
+                        institution’s secure Wi-Fi zone.
+                        No external internet connection is needed, ensuring speed, privacy, and controlled access
+                        for both students and managers.
+                    </p>
+                    <button onclick="window.location.href='/box3_col1'" class="btn btn-outline-light" type="button">Learn More</button>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-md-6 mb-4">
+                <div class="h-100 p-4 bg-dark text-white border border-light rounded-3">
+                    <h2>Support & Help</h2>
+                    <p>
+                        Need assistance? Reach out through our support system for technical help, FAQs,
+                        and account-related questions. We’re here to ensure a smooth experience using SmartAttendance.
+                    </p>
+                    <button onclick="window.location.href='/box3_col2'" class="btn btn-outline-light" type="button">Contact Support</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- foret loginsection -->
+    <div class="p-5 text-center bg-dark text-light rounded-3">
+        <svg class="bi mt-4 mb-3" style="color: #0d6efd;" width="100" height="100" aria-hidden="true">
+            <use xlink:href="#bootstrap"></use>
+        </svg>
+        <h1 class="text-light">Smart Attendance System</h1>
+        <p class="col-lg-8 mx-auto fs-5 text-light">
+            SmartAttendance combines simplicity and smart technology to streamline student and faculty attendance like
+            never before.
+            Experience a new level of control, transparency, and automation.
+            <!-- <code class="text-warning bg-dark px-1 rounded">.col-*</code> class, and a customized call to action. -->
+        </p>
+        <div class="d-inline-flex gap-2 mb-5">
+            <button onclick="location.href='/logina'"
+                class="d-inline-flex align-items-center btn btn-success btn-lg px-4 rounded-pill" type="button">
+                Get Started
+                <i class="bi bi-arrow-right-short"></i>
+            </button>
+            <button onclick="location.href='/read_about'" class="btn btn-outline-primary btn-lg px-4 rounded-pill text-primary-hover-light" type="button">
+                Learn More
+            </button>
+        </div>
+    </div>
+
+    <!-- footer sec -->
+    <!-- <div class="b-example-divider"></div> -->
+    <br><br>
+    <footer class="py-5 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <!-- Footer Links Section 1 -->
+                <div class="col-6 col-md-2 mb-3">
+                    <h5>Section</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Home</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Features</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Pricing</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">About</a></li>
+                    </ul>
+                </div>
+
+                <!-- Footer Links Section 2 -->
+                <div class="col-6 col-md-2 mb-3">
+                    <h5>Section</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Home</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Features</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Pricing</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">About</a></li>
+                    </ul>
+                </div>
+
+                <!-- Footer Links Section 3 -->
+                <div class="col-6 col-md-2 mb-3">
+                    <h5>Section</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Home</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Features</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Pricing</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">About</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter Subscription -->
+                <div class="col-md-5 offset-md-1 mb-3">
+                    <form>
+                        <h5>Subscribe to our newsletter</h5>
+                        <p>Monthly digest of what's new and exciting from us.</p>
+                        <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                            <label for="newsletter1" class="visually-hidden">Email address</label>
+                            <input id="newsletter1" type="email" class="form-control" placeholder="Email address">
+                            <button onclick="sendData()" class="btn btn-outline-primary" type="button">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="d-flex flex-column flex-sm-row justify-content-between py-4 mt-4 border-top border-light">
+                <p class="mb-0">© 2025 Company, Inc. All rights reserved.</p>
+                <ul class="list-unstyled d-flex mb-0">
+                    <li class="ms-3">
+                        <a class="text-light" href="#" aria-label="Instagram">
+                            <svg class="bi" width="24" height="24">
+                                <use xlink:href="#instagram"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="ms-3">
+                        <a class="text-light" href="#" aria-label="Facebook">
+                            <svg class="bi" width="24" height="24">
+                                <use xlink:href="#facebook"></use>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <script>
+        window.onload = function () {
+            {% for category, message in messages %}
+            showPopup("{{ message }}", "{{ category }}");  // 👈 calls the popup function
+            {% endfor %}
+        };
+    </script>
+    {% endif %}
+    {% endwith %}
+
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/script1.js"></script>
+    <script>
+        function showPopup(message, type) {
+            const popup = document.getElementById('popup');
+            popup.textContent = message;
+            popup.className = 'popup-message popup-' + type;
+            popup.style.display = 'block';
+
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 4000);
+        }
+    </script>
+    
+
+    <script>
+        async function sendData() {
+            const email = document.getElementById('newsletter1').value;
+
+            const response = await fetch('/subscribe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({email: email })
+            });
+
+            const result = await response.json();
+            const message = result.message;
+            if (message==='success'){
+                window.location.href = '/sucess_sub';
+            }
+            else{
+                showPopup("{{ message }}", "{{ category }}");
+            }
+        }
+    </script>
+</body>
+
+</html>

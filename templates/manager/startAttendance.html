@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Start Attendance - Manager Panel</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #f0f0f0;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .start-attendance {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 40px;
+        }
+
+        .start-attendance button {
+            background-color: #4fc3f7;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .start-attendance button:hover {
+            background-color: #0288d1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #1e1e1e;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        th {
+            background-color: #2a2a2a;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #2c2c2c;
+        }
+
+        .details-btn {
+            background-color: #4fc3f7;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .details-btn:hover {
+            background-color: #0288d1;
+        }
+
+        /* for stopwatch */
+        /* #countdown {
+            font-weight: bold;
+            padding: 10px;
+            background: #ffe6e6;
+            border-radius: 8px;
+            width: fit-content;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <h2>📅 Start Attendance Period</h2>
+
+    <div class="start-attendance">
+        <div>
+            <input id="task_id" type="hidden" name="subject_id" {% if student_info and student_info[0].task_id %}
+                value="{{ student_info[0].task_id }}" {% endif %}>
+
+            <button id="buttforstart" type="submit">Start Attendance</button>
+        </div>
+        <!-- <div id="countdown" style="margin-top: 10px; font-size: 24px; color: red;"></div> -->
+    </div>
+
+    <h2>👨‍🎓 Associated Students</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Attend</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in student_info %}
+            <tr>
+                <td>{{ student.id }}</td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.email }}</td>
+                <td>{{ student.persentAge }}%</td>
+                <td>
+                    <a style="background-color: {% if student.sush %}red{% endif %};" data-userid="{{student.code}}"
+                        data-btn="{{student.student_id}}" class="details-btn triger">{% if
+                        not student.sush %}
+                        Saspand
+                        {% else %}open
+                        {% endif %}</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4" style="text-align: center;">No students associated.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+        <script>
+            document.querySelectorAll('.triger').forEach(button => {
+                button.addEventListener('click', async function () {
+                    const btnNumber = this.dataset.btn;
+                    const btnNumber1 = this.dataset.userid;
+
+                    // Toggle button text
+                    this.innerText = this.innerText === 'open' ? 'Saspand' : 'open';
+                    const status = this.innerText.toLowerCase();  // 'open' or 'close'
+                    // ✅ Change button color based on status
+                    if (status === 'open') {
+                        this.style.backgroundColor = 'red';
+                        this.style.color = 'white';
+                    } else {
+                        this.style.backgroundColor = '#4fc3f7';
+                        this.style.color = 'white';
+                    }
+                    // Send button number to backend
+                    try {
+                        const response = await fetch('/button_click', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ button_number: btnNumber, code: btnNumber1 })
+                        });
+
+                        const data = await response.json();
+                        // document.getElementById('response').innerText = data.message;
+                    } catch (error) {
+                        console.error('Error:', error);
+                        document.getElementById('response').innerText = 'Error sending data to server';
+                    }
+                });
+            });
+
+            //for stopwatch
+            // function startCountdown(e) {
+            //     e.preventDefault();  // Prevent form from submitting immediately
+
+            //     let duration = .5 * 60; // 5 minutes in seconds
+            //     const display = document.getElementById('countdown');
+            //     const buttforstart = document.getElementById('buttforstart');
+            //     buttforstart.disabled = true;
+            //     buttforstart.innerText = "Attendance Started...";
+
+            //     // Change button style
+            //     buttforstart.style.backgroundColor = "#aaa";
+            //     buttforstart.style.cursor = "not-allowed";
+            //     buttforstart.style.color = "#fff";
+            //     buttforstart.style.border = "1px solid #888";
+
+            //     const timer = setInterval(() => {
+            //         let minutes = Math.floor(duration / 60);
+            //         let seconds = duration % 60;
+
+            //         display.textContent =
+            //             `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+            //         if (--duration < 0) {
+            //             clearInterval(timer);
+            //             display.textContent = "⏰ Time's up!";
+            //             document.querySelector('form').submit();  // Submit form after countdown
+            //         }
+            //     }, 1000);
+            // }
+        </script>
+
+        <script>
+            task_id = document.getElementById('task_id').value;
+            console.log(task_id);
+            // Success callback
+            async function getclocation(position) {
+                try {
+                    const response = await fetch("/task/red_irct", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude,
+                            task_id: task_id
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Failed to save location");
+                    }
+
+                    const result = await response.json();
+                    console.log("Location saved:", result);
+                } catch (error) {
+                    console.error("Error saving location:", error.message);
+                }
+            }
+
+
+            // Error callback
+            function ngetclocation(error) {
+                alert("Something went wrong:", error.message);
+            }
+
+            // Button listener
+            let butn = document.getElementById('buttforstart');
+            butn.addEventListener('click', () => {
+                if ("geolocation" in navigator) {
+                    navigator.geolocation.getCurrentPosition(getclocation, ngetclocation);
+                } else {
+                    console.log("Geolocation is not supported by this browser.");
+                }
+            });
+        </script>
+
+
+
+</body>
+
+</html>

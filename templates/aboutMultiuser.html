@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multi-User Architecture</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    header {
+      background-color: #1f1f1f;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: #00bcd4;
+    }
+
+    .back-button {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 8px 14px;
+      color: #03dac6;
+      text-decoration: none;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid #03dac6;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: rgba(3, 218, 198, 0.2);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      color: #03dac6;
+      font-size: 1.6rem;
+      margin-top: 0;
+    }
+
+    .section p {
+      color: #cccccc;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1f1f1f;
+      color: #888;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="/" class="back-button">← Back</a>
+    <h1>Multi-User System</h1>
+  </header>
+
+  <div class="container">
+
+    <div class="section">
+      <h2>👨‍🎓 Student Panel</h2>
+      <p>
+        Students can register and log in to mark attendance, view attendance history, and receive OTPs or location-based prompts depending on their class setup. Each student is linked to a specific subject and institute.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>🏫 Institute Manager Panel</h2>
+      <p>
+        Managers can create subjects, register students, manage attendance sessions, and control attendance methods (Face, OTP, Location). Each manager operates their own independent institute dashboard.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>🔐 Admin (Superuser)</h2>
+      <p>
+        The admin can monitor multiple institutes, verify manager accounts, analyze system usage, and resolve disputes. This role has full access across all institute-level activities for moderation and auditing.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>🔄 Scalable User Roles</h2>
+      <p>
+        The system is built to scale — allowing more roles such as teaching assistants, staff, or department heads to be integrated in future releases. Each user’s access is isolated based on their role and institute.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>🛡️ Role-Based Security</h2>
+      <p>
+        All users access features based on their permissions. For example, students can’t view other students’ data, and managers can't access institutes they don't manage. This maintains clean, secure boundaries.
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; {{ year or "2025" }} SmartAttendance App. All rights reserved.
+  </footer>
+
+</body>
+</html>

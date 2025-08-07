@@ -1,0 +1,90 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.otp-box {
+    background-color: #1e1e1e;
+    padding: 30px 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.otp-box h2 {
+    text-align: center;
+    color: #00bcd4;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+form input[type="text"] {
+    padding: 12px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #2c2c2c;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+}
+
+form input:focus {
+    outline: none;
+    background-color: #3a3a3a;
+}
+
+form button {
+    padding: 12px;
+    background-color: #00bcd4;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #00acc1;
+}
+
+.messages {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.messages li {
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.success {
+    background-color: #2e7d32;
+    color: white;
+}
+
+.error {
+    background-color: #c62828;
+    color: white;
+}

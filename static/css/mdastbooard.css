@@ -1,0 +1,53 @@
+body {
+  background-color: #121212;
+  font-family: "Segoe UI", sans-serif;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  padding: 30px; /* equal padding on all sides */
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.class-box {
+  width: 100%;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease;
+}
+
+.class-box:hover {
+  transform: translateY(-4px);
+}
+
+.even {
+  background-color: #1f1f1f;
+}
+
+.odd {
+  background-color: #2c2c2c;
+}
+
+.class-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: whitesmoke;
+  margin-bottom: 10px;
+}
+
+.class-teacher {
+  font-size: 1rem;
+  color: #cccccc;
+}
+
+.class-code {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #aaaaaa;
+}

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Support & Help</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    header {
+      background-color: #1f1f1f;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: #00bcd4;
+    }
+
+    .back-button {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 8px 14px;
+      color: #03dac6;
+      text-decoration: none;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid #03dac6;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: rgba(3, 218, 198, 0.2);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      color: #03dac6;
+      font-size: 1.6rem;
+      margin-top: 0;
+    }
+
+    .section p, .section ul {
+      color: #cccccc;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .contact-box {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #2a2a2a;
+      border-left: 4px solid #03dac6;
+      border-radius: 8px;
+    }
+
+    .contact-box p {
+      margin: 6px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1f1f1f;
+      color: #888;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="/" class="back-button">← Back</a>
+    <h1>Support & Help</h1>
+  </header>
+
+  <div class="container">
+
+    <div class="section">
+      <h2>🧑‍🎓 For Students</h2>
+      <p>
+        If you're facing issues with login, OTP verification, attendance marking, or profile updates, please first try the following steps:
+      </p>
+      <ul>
+        <li>Ensure your internet connection is stable</li>
+        <li>Make sure you're logging into the correct institute</li>
+        <li>Check if your subject/attendance session is active</li>
+      </ul>
+      <p>
+        Still stuck? Reach out to your institute manager or contact support below.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>🏫 For Institute Managers</h2>
+      <p>
+        For issues related to managing subjects, students, attendance logs, or access permissions:
+      </p>
+      <ul>
+        <li>Ensure all students are properly registered with unique IDs</li>
+        <li>Verify subject status before launching attendance sessions</li>
+        <li>Use a supported browser (Chrome/Edge recommended)</li>
+      </ul>
+      <p>
+        You can also escalate technical issues to the app administrator.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>📞 Contact Support</h2>
+      <div class="contact-box">
+        <p><strong>Email:</strong> support@smartattendance.in</p>
+        <p><strong>WhatsApp:</strong> +91-98765-43210</p>
+        <p><strong>Available:</strong> Mon – Sat (10:00 AM – 6:00 PM)</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>📘 Documentation</h2>
+      <p>
+        Need step-by-step guides? Visit the <a href="#" style="color:#03dac6; text-decoration: underline;">Help Center</a> to explore tutorials, setup instructions, and FAQs.
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; {{ year or "2025" }} SmartAttendance App. All rights reserved.
+  </footer>
+
+</body>
+</html>

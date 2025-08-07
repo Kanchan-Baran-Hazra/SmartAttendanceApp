@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Select Account Type</title>
+  <link rel="stylesheet" href="/static/css/continue.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Welcome User</h2>
+    <p>This email is associated with multiple roles. Please choose an account type to continue:</p>
+
+    <div class="card-box">
+      <a href="/student_home" class="card">
+        <h3>👨‍🎓 {{name2}}</h3>
+        <p>Access your classes, attendance, and messages.</p>
+      </a>
+
+      <a href="/home" class="card">
+        <h3>🧑‍💼 {{name1}}</h3>
+        <p>Manage students, attendance records, and reports.</p>
+      </a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>OTP Verification - Smart Attendance</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; margin: 0;">
+  <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+    <h2 style="color: #4CAF50; text-align: center;">Smart Attendance App</h2>
+    <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 20px 0;" />
+    
+    <p style="font-size: 16px; color: #333;">Dear Manager,</p>
+
+    <p style="font-size: 16px; color: #333;">
+      To complete your verification for <strong>Smart Attendance</strong>, please use the following One-Time Password (OTP):
+    </p>
+
+    <div style="text-align: center; margin: 30px 0;">
+      <span style="display: inline-block; font-size: 28px; letter-spacing: 5px; padding: 10px 20px; background-color: #e8f5e9; color: #2e7d32; border-radius: 6px;">
+        <strong>{{ otp }}</strong>
+      </span>
+    </div>
+
+    <p style="font-size: 15px; color: #555;">
+      This OTP is valid for <strong>5 minutes</strong>. Do not share it with anyone.
+    </p>
+
+    <p style="font-size: 15px; color: #555;">
+      If you didn’t request this, please ignore this email.
+    </p>
+
+    <br>
+    <p style="font-size: 15px; color: #333;">Best regards,</p>
+    <p style="font-size: 15px; color: #333;"><strong>Smart Attendance Team</strong></p>
+
+    <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 30px 0;" />
+    <p style="font-size: 12px; color: #999; text-align: center;">
+      © {{ current_year }} Smart Attendance. All rights reserved.
+    </p>
+  </div>
+</body>
+</html>

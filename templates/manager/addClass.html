@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Secure Terminal Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #00ff00;
+      font-family: 'Share Tech Mono', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .login-terminal {
+      width: 500px;
+      background: #000000dd;
+      padding: 40px;
+      border: 2px solid #00ff00;
+      box-shadow: 0 0 20px #00ff0077;
+    }
+
+    .login-terminal h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background: #000;
+      color: #00ff00;
+      border: 1px solid #00ff00;
+      font-size: 16px;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #00ff00;
+      color: black;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .loading-screen {
+      display: none;
+      white-space: pre-wrap;
+      height: 200px;
+      overflow-y: auto;
+      border-top: 1px solid #00ff00;
+      margin-top: 20px;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-terminal">
+    <h2>Add Class</h2>
+    <input type="text" id="username" placeholder="Class Name" />
+    <input type="password" id="password" placeholder="Class Code" />
+    <button id="submitBtn" onclick="startLogin()">Create</button>
+
+    <div class="loading-screen" id="loadingScreen"></div>
+  </div>
+
+  <script>
+    const logs = [
+      "[AUTH] Initializing access protocol...",
+      "[AUTH] Verifying user credentials...",
+      "[AUTH] Establishing secure connection...",
+      "[AUTH] Encrypting handshake...",
+      "[AUTH] Synchronizing system clock...",
+      "[AUTH] Loading user permissions...",
+      "[AUTH] Finalizing access request...",
+      "[SUCCESS] ACCESS GRANTED. Welcome, Agent.",
+    ];
+    async function startLogin() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username === "" || password === "") {
+        alert("Fill all the info");
+        return;
+      }
+
+      if (password.length < 6) {
+        alert("Code minimum length is 6");
+        return;
+      }
+      let btnName="";
+      let response = await fetch('/addclass', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"  // very important
+        },
+        body: JSON.stringify({ name: username, sub_code: password })
+      });
+      let data=await response.json();
+      console.log(data.message)
+      if (data.message=="error"){
+        btnName="Failed..!!/This code already exist..";
+      }else{
+        btnName="Continue";
+      }
+      document.getElementById("submitBtn").disabled = true;
+      const loadingScreen = document.getElementById("loadingScreen");
+      loadingScreen.style.display = "block";
+      loadingScreen.innerText = "";
+
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < logs.length) {
+          loadingScreen.innerText += logs[i] + "\n";
+          loadingScreen.scrollTop = loadingScreen.scrollHeight;
+          i++;
+        } else {
+          clearInterval(interval);
+
+          // ✅ Create and show button AFTER logs are printed
+          const nextBtn = document.createElement("button");
+          nextBtn.textContent = btnName;
+          nextBtn.style.marginTop = "15px";
+          nextBtn.style.background = "#00ff00";
+          nextBtn.style.color = "#000";
+          nextBtn.style.border = "none";
+          nextBtn.style.padding = "10px";
+          nextBtn.style.width = "100%";
+          nextBtn.style.cursor = "pointer";
+          nextBtn.style.fontWeight = "bold";
+          nextBtn.onclick = () => {
+            window.location.href = "/home";
+            // You can use: window.location.href = "/dashboard"; here
+          };
+
+          // Append button after loading screen
+          loadingScreen.parentNode.appendChild(nextBtn);
+        }
+      }, 700);
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+.login-link {
+  text-align: center;
+  color: #ccc;
+  margin-top: 20px;
+  font-size: 0.95rem;
+}
+
+.login-link a {
+  color: #00bfff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.login-link a:hover {
+  color: #fff;
+  text-shadow: 0 0 10px #00bfff;
+}
+
+
+/* For circular logo */
+.logo-circle {
+  width: 65px; /* slightly smaller */
+  height: 65px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border: 2px solid #00bfff;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-circle img {
+  width: 110%;       /* Slight zoom */
+  height: 110%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.2); /* extra zoom if image has transparent space */
+}
+
+

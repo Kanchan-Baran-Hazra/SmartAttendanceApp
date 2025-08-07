@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multi-Institute Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    header {
+      background-color: #1f1f1f;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: #00bcd4;
+    }
+
+    .back-button {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 8px 14px;
+      color: #03dac6;
+      text-decoration: none;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid #03dac6;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: rgba(3, 218, 198, 0.2);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      color: #03dac6;
+      font-size: 1.6rem;
+      margin-top: 0;
+    }
+
+    .section p {
+      color: #cccccc;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1f1f1f;
+      color: #888;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="/" class="back-button">← Back</a>
+    <h1>Multi-Institute Support</h1>
+  </header>
+
+  <div class="container">
+
+    <div class="section">
+      <h2>🏢 Independent Institutes</h2>
+      <p>
+        Each registered institute operates in its own secured environment. No institute can access another’s students, subjects, or attendance data.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>👨‍💼 Separate Institute Managers</h2>
+      <p>
+        Every institute is managed by its own manager account. Managers can only create subjects, add students, and view logs for their own institute.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>🔑 Isolated Login System</h2>
+      <p>
+        Login pages are separated for students and managers. Users select their institute during login/registration so that authentication stays scoped.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>📊 Scalable Database Design</h2>
+      <p>
+        Subjects, students, attendance logs, and settings are linked via institute IDs. This makes the system scalable across schools, colleges, and coaching centers.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>🛡️ Secure Data Separation</h2>
+      <p>
+        Institute-specific data is strictly separated in the backend using role-based access and filtering. Even superusers require permissions to view institute data.
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; {{ year or "2025" }} SmartAttendance App. All rights reserved.
+  </footer>
+
+</body>
+</html>

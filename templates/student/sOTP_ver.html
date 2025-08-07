@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>OTP Verification</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/sOTP_ver.css') }}"> -->
+    <link rel="stylesheet" href="/static/css/sOTP_ver.css">
+    <style>
+        .resend-otp-text {
+            color: #90caf9;
+            text-decoration: underline;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 1vw;
+        }
+
+        .resend-otp-text:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="otp-box">
+        <h2>Enter OTP</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <ul class="messages">
+            {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        <form method="POST">
+            <label for="otp">OTP</label>
+            <input type="text" id="otp" name="otp" placeholder="Enter 6-digit OTP" maxlength="6" required>
+            <button type="submit">Verify</button>
+            <a href="/resend_otp" class="resend-otp-text">Resend OTP</a>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.teachers-section {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 40px;
+}
+
+.teachers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.teacher-card {
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+}
+
+.teacher-card:hover {
+  transform: translateY(-5px);
+}
+
+.teacher-name {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.teacher-subject,
+.teacher-email {
+  font-size: 0.95em;
+  margin: 6px 0;
+}
+
+.teacher-email a {
+  color: #4fc3f7;
+  text-decoration: none;
+}
+
+.teacher-email a:hover {
+  text-decoration: underline;
+}

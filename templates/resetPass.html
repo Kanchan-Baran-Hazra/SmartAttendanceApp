@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reset Password</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .reset-container {
+            background-color: #1e1e1e;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .reset-container h2 {
+            text-align: center;
+            margin-bottom: 24px;
+            color: #00d8ff;
+        }
+
+        .reset-container input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 6px;
+            background-color: #2c2c2c;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .reset-container input:focus {
+            outline: 2px solid #00d8ff;
+        }
+
+        .reset-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00d8ff;
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .reset-container button:hover {
+            background-color: #00bcd4;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 14px;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <form class="reset-container" method="POST">
+        <h2>Reset Your Password</h2>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div style="margin-bottom: 15px;">
+            {% for category, message in messages %}
+            <div class="flash-message {{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <input type="password" name="new_password" placeholder="New Password" required minlength="6">
+        <input type="password" name="confirm_password" placeholder="Confirm Password" required minlength="6">
+
+        <button type="submit">Reset Password</button>
+
+        <div class="message">
+            Enter your new password and confirm it.
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Attendance - Sign In</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <h2>Welcome Back</h2>
+      <p class="subtitle">Sign in to Smart Attendance</p>
+
+      {% with messages=get_flashed_messages(with_categories=True) %}
+      {% if messages %}
+      {% for cata,message in messages %}
+      <li style="color: {% if cata=='error' %}red{% else %}green{% endif %};">{{message}}</li>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+      <form action="/login" method="POST">
+        <div class="form-group">
+          <label for="email">Email or Username</label>
+          <input type="text" id="email" name="email" required placeholder="Enter your email or username">
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required placeholder="Enter your password">
+          <div class="forgot-password">
+            <a href="/forgot_password">Forgot Password?</a>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-login">Sign In</button>
+
+        <div class="form-footer">
+          <p class="signup-text">Don't have an account? <a href="/logina">Register here</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All My Teachers</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .teachers-section {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #f0f0f0;
+        }
+
+        .teacher-grid-box {
+            background-color: #1e1e1e;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .teacher-row {
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #2a2a2a;
+            transition: background 0.2s ease;
+        }
+
+        .teacher-row:hover {
+            background-color: #333;
+        }
+
+        .teacher-name {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+            color: #4fc3f7;
+        }
+
+        .teacher-subject,
+        .teacher-email {
+            font-size: 0.95em;
+            margin: 2px 0;
+            color: #ccc;
+        }
+
+        .teacher-email a {
+            color: #90caf9;
+            text-decoration: none;
+        }
+
+        .teacher-email a:hover {
+            text-decoration: underline;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin: 30px auto 0;
+            padding: 12px 24px;
+            font-size: 1em;
+            color: white;
+            background-color: #2599ce;
+            border: none;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+
+        .back-button:hover {
+            background-color: #097ab6;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        @media (min-width: 600px) {
+            .teacher-row {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .teacher-row div {
+                flex: 1;
+                margin-right: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="teachers-section">
+        <h2 class="section-title">👨‍🏫 All My Teachers</h2>
+
+        <div class="teacher-grid-box">
+            <!-- Example teacher card -->
+            {% if all_sub %}
+            {% for sub in all_sub %}
+            <div class="teacher-row">
+                <div class="teacher-name">{{ sub.teacher_name }}</div>
+                <div class="teacher-subject"><strong>Subject:</strong> {{ sub.task_name }}</div>
+                <div class="teacher-email"><strong>Email:</strong>
+                    <a href="mailto:{{ sub.teacher_email }}">{{ sub.teacher_email }}</a>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <h3>No Teacher Found</h3>
+            {% endif %}
+
+            <!-- Add more teacher rows here -->
+
+            <!-- ✅ Back button at the end -->
+            <div class="button-container">
+                <a href="/student_home" class="back-button">⬅️ Back</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

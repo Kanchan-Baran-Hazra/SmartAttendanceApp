@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify OTP</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #FFFFFF;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #00FFFF;
+        }
+
+        form {
+            background-color: #1E1E1E;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 255, 255, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background-color: #2A2A2A;
+            color: white;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"]::placeholder {
+            color: #888;
+        }
+
+        button {
+            background-color: #00BCD4;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #008C9E;
+        }
+
+        .resend {
+            margin-top: 20px;
+            display: block;
+            color: #00BCD4;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .resend:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>OTP Verification</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">{{ message }}</div>
+  {% endfor %}
+{% endwith %}
+
+    <form method="POST">
+        <input type="text" name="otp" placeholder="Enter OTP" maxlength="6" required>
+        <button type="submit">Verify</button>
+    </form>
+    <a class="resend" href="/resend_otp_foratt">Didn’t get OTP? Resend</a>
+</body>
+</html>

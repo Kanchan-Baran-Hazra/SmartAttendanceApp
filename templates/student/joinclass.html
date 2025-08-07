@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Join Class</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/joinclass.css">
+</head>
+<body>
+  <div class="join-container">
+    <h2>Join a Class</h2>
+    {% with messages=get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for cata,message in messages %}
+    <li style="color:red; margin: 1vw; list-style-type: none;">{{message}}</li>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <form method="POST">
+      <input type="text" name="class_code" placeholder="Enter Class Code" required />
+
+      <div class="btn-group">
+        <button type="submit" class="btn-join">Join</button>
+        <a href="/student_home" class="btn-back">Back</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

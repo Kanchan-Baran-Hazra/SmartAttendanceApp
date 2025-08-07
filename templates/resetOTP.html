@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reset Password with OTP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-box {
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            text-align: center;
+            color: #00d8ff;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 6px;
+            background-color: #2b2b2b;
+            color: white;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00d8ff;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            color: black;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #00bcd4;
+        }
+    </style>
+</head>
+
+<body>
+    <form class="form-box" method="POST">
+        <h2>Reset Password</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div style="margin-bottom: 15px;">
+            {% for category, message in messages %}
+            <div class="flash-message {{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <input type="text" name="otp" placeholder="Enter OTP" required maxlength="6">
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>

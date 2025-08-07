@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Classroom - Add Message</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #121212;
+        color: #fff;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: auto;
+      }
+
+      .add-message-box {
+        background-color: #1f1f1f;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+        margin-bottom: 20px;
+      }
+
+      .add-message-box input[type="text"],
+      .add-message-box textarea {
+        width: 100%;
+        background-color: #2a2a2a;
+        color: #fff;
+        border: none;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .add-message-box textarea {
+        resize: none;
+      }
+
+      .button-group {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .add-message-box button {
+        background-color: #3f51b5;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .back-button {
+        background-color: #555;
+      }
+
+      .message {
+        background-color: #1f1f1f;
+        border-radius: 10px;
+        padding: 15px 20px;
+        margin-bottom: 10px;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.05);
+      }
+
+      .message .title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #ffca28;
+      }
+
+      .message .author {
+        font-weight: bold;
+        color: #90caf9;
+      }
+
+      .message .text {
+        margin-top: 5px;
+        color: #e0e0e0;
+      }
+    </style>
+    <!-- for select -->
+    <style>
+      .add-message-box select {
+        width: 100%;
+        background-color: #2a2a2a;
+        color: #fff;
+        border: none;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 16px;
+        margin-bottom: 10px;
+        appearance: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="add-message-box">
+        <input
+          type="text"
+          id="titleInput"
+          placeholder="Title (e.g., Exam Update, Class Cancelled)"
+        />
+        <select id="categorySelect">
+          {% for i in sub_list %}
+          <option value="{{i}}">{{i}}</option>
+          {% endfor %}
+          <!-- <option value="Exam Update">Exam Update</option>
+        <option value="Class Cancelled">Class Cancelled</option>
+        <option value="Homework">Homework</option>
+        <option value="General Announcement">General Announcement</option> -->
+        </select>
+
+        <textarea
+          id="messageInput"
+          rows="4"
+          placeholder="Announce something to your class..."
+        ></textarea>
+
+        <div class="button-group">
+          <button class="back-button" onclick="window.location.href='/home'">
+            ← Back
+          </button>
+          <button onclick="sendMessage(); addMessage();">Post</button>
+        </div>
+      </div>
+
+      <div id="messageList">
+        <!-- Messages will appear here -->
+      </div>
+    </div>
+
+    <script>
+      function addMessage() {
+        const title = document.getElementById("titleInput").value.trim();
+        const text = document.getElementById("messageInput").value.trim();
+        const category = document.getElementById("categorySelect").value;
+
+        if (!category) {
+          alert("Please select a category.");
+          return;
+        }
+
+        if (title === "" || text === "") return;
+
+        const messageList = document.getElementById("messageList");
+        const messageDiv = document.createElement("div");
+        messageDiv.className = "message";
+
+        messageDiv.innerHTML = `
+        <div class="title">${title}</div>
+        <div class="text">${category}</div>
+        <div class="author">You</div>
+        <div class="text">${text}</div>
+      `;
+
+        messageList.prepend(messageDiv);
+
+        document.getElementById("titleInput").value = "";
+        document.getElementById("messageInput").value = "";
+      }
+
+      async function sendMessage() {
+        const title = document.getElementById("titleInput").value.trim();
+        const content = document.getElementById("messageInput").value.trim();
+        const category = document.getElementById("categorySelect").value;
+
+        if (!category) {
+          alert("Please select a category.");
+          return;
+        }
+
+        if (!title || !content) {
+          alert("Please fill both fields.");
+          return;
+        }
+
+        const res = await fetch("add_message", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ title, content,category }),
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          alert(data.message);
+          addMessage(title, content); // ✅ Add to UI only if message is saved
+        } else {
+          alert("Failed to send message.");
+        }
+      }
+    </script>
+  </body>
+</html>

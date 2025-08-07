@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Students - Manager View</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #fff;
+      margin: 40px;
+    }
+
+    h2 {
+      color: #90caf9;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      border-radius: 10px;
+      background-color: #1f1f1f;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.05);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      color: #e0e0e0;
+    }
+
+    th, td {
+      padding: 14px 18px;
+      text-align: left;
+      border-bottom: 1px solid #333;
+    }
+
+    th {
+      background-color: #2a2a2a;
+      color: #90caf9;
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background-color: #2e2e2e;
+    }
+
+    .action-btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #fff;
+      margin-right: 8px;
+    }
+
+    .view-btn {
+      background-color: #4caf50;
+    }
+
+    .delete-btn {
+      background-color: #f44336;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>All Registered Students</h2>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Email</th>
+          <th>Class</th>
+          <th>Section</th>
+          <th>Roll No</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Amit Kumar</td>
+          <td>amit@example.com</td>
+          <td>10</td>
+          <td>A</td>
+          <td>23</td>
+          <td>
+            <button class="action-btn view-btn">View</button>
+            <button class="action-btn delete-btn">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Sneha Roy</td>
+          <td>sneha@example.com</td>
+          <td>12</td>
+          <td>B</td>
+          <td>17</td>
+          <td>
+            <button class="action-btn view-btn">View</button>
+            <button class="action-btn delete-btn">Delete</button>
+          </td>
+        </tr>
+        <!-- More rows will come here dynamically -->
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

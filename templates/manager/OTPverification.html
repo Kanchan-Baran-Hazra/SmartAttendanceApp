@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify OTP</title>
+    <link rel="stylesheet" href="/static/css/OTPverification.css" />
+    <style>
+        .resend-otp-text {
+            display: inline-block;
+            margin-top: 10px;
+            color: #90caf9;
+            text-decoration: underline;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            margin-left: 2vw;
+        }
+
+        .resend-otp-text:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Verify OTP</h2>
+        <div class="info-message">
+            We have sent an OTP to your registered email address.
+        </div>
+        {% with messages= get_flashed_messages(with_categories=True) %} {% if
+        messages %} {% for catagory,message in messages %}
+        <li style="color: {% if category == 'error' %}red{% else %}green{% endif %};">
+            {{ message }}
+        </li>
+        {% endfor %} {% endif %} {% endwith %}
+        <form method="POST">
+            <input type="text" name="otp" placeholder="Enter OTP" required />
+            <button type="submit">Verify</button>
+            <a href="/resend_otp" class="resend-otp-text">Resend OTP</a>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <!-- Enable dark theme -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/login1.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+
+  <body class="bg-dark text-light">
+    <!-- Set dark background and light text -->
+    <div class="container">
+      <main>
+        <!-- heading sec -->
+        <div class="py-5 text-center">
+          <img
+            class="d-block mx-auto mb-4 logo-circle"
+            src="static/download.webp"
+            alt=""
+            width="72"
+            height="57"
+          />
+          <h1 class="h2">Register as an Institute Manager</h1>
+          <p class="lead">Enter your official details to get started.</p>
+        </div>
+
+        <!-- form sec -->
+        <div class="row g-5">
+          <!-- right sec -->
+          <div class="col-md-5 col-lg-4 order-md-last">
+            <h4 class="d-flex justify-content-between align-items-center mb-4">
+              <span class="text-info fw-semibold">🚀 Introducing</span>
+              <span class="badge bg-info text-dark rounded-pill fs-6 px-3 py-2"
+                >SmartAttendance</span
+              >
+            </h4>
+
+            <ul class="list-group mb-4 shadow-lg">
+              <li
+                class="list-group-item bg-dark text-light d-flex justify-content-between align-items-start"
+              >
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">
+                    <i class="bi bi-clock-history me-2"></i>Automated Attendance
+                  </div>
+                  Face recognition or OTP-based check-ins in real-time.
+                </div>
+              </li>
+              <li
+                class="list-group-item bg-dark text-light d-flex justify-content-between align-items-start"
+              >
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">
+                    <i class="bi bi-buildings me-2"></i>Multi-Institute Support
+                  </div>
+                  Manage colleges, departments, and subjects with ease.
+                </div>
+              </li>
+              <li
+                class="list-group-item bg-dark text-light d-flex justify-content-between align-items-start"
+              >
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">
+                    <i class="bi bi-speedometer2 me-2"></i>Real-Time Dashboard
+                  </div>
+                  Admins & teachers get live updates and reports.
+                </div>
+              </li>
+              <li
+                class="list-group-item bg-dark text-light d-flex justify-content-between align-items-start"
+              >
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold text-success">
+                    <i class="bi bi-shield-lock me-2"></i>Secure Access
+                  </div>
+                  Role-based login system with secure session management.
+                </div>
+              </li>
+              <li
+                class="list-group-item bg-dark text-info d-flex justify-content-between align-items-start"
+              >
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">
+                    <i class="bi bi-lightning me-2"></i>Try It Now
+                  </div>
+                  It’s free, fast, and built for modern institutes.
+                </div>
+                <span class="badge bg-info text-dark rounded-pill"
+                  >100% Free</span
+                >
+              </li>
+            </ul>
+
+            <!-- 🌟 Testimonial Section -->
+            <div class="mt-5">
+              <h4 class="text-info mb-4">
+                <i class="bi bi-chat-left-quote-fill me-2"></i>What Our Users
+                Say
+              </h4>
+              <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col">
+                  <div class="card bg-dark border-info text-light h-100">
+                    <div class="card-body">
+                      <p class="card-text">
+                        “SmartAttendance completely automated our daily process.
+                        No more manual checking!”
+                      </p>
+                      <h6 class="card-subtitle mt-2 text-info">
+                        — Prof. Anjali Das, HOD, Tech Institute
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card bg-dark border-info text-light h-100">
+                    <div class="card-body">
+                      <p class="card-text">
+                        “Face recognition attendance was a game-changer.
+                        Students love it!”
+                      </p>
+                      <h6 class="card-subtitle mt-2 text-info">
+                        — Rahul Sen, Admin, EduWave College
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- left sec -->
+          <div class="col-md-7 col-lg-8">
+            <h6 class="response_err">
+              {% with messages= get_flashed_messages(with_categories=True) %} {%
+              if messages %} {% for catagory,message in messages %}
+              <li
+                style="color: {% if category == 'error' %}red{% else %}green{% endif %};"
+              >
+                {{ message }}
+              </li>
+              {% endfor %}
+              {% endif %}
+              {% endwith %}
+            </h6>
+            <h4 class="mb-3">Account Info</h4>
+            <form method="post">
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label for="firstName" class="form-label">First name</label>
+                  <input
+                    type="text"
+                    name="f_name"
+                    class="form-control"
+                    id="firstName"
+                    placeholder=""
+                    value=""
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Valid first name is required.
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <label for="lastName" class="form-label">Last name</label>
+                  <input
+                    type="text"
+                    name="l_name"
+                    class="form-control"
+                    id="lastName"
+                    placeholder=""
+                    value=""
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Valid last name is required.
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label for="username" class="form-label"
+                    >Instritute Name</label
+                  >
+                  <div class="input-group has-validation">
+                    <span class="input-group-text"
+                      ><i class="bi bi-building-add"></i
+                    ></span>
+                    <input
+                      type="text"
+                      name="inst_name"
+                      class="form-control"
+                      id="username"
+                      placeholder="Instritute/Collage"
+                      required
+                      fdprocessedid="0b8f2l"
+                    />
+                    <div class="invalid-feedback">
+                      Your username is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label for="email" class="form-label"
+                    >Email
+                    <span class="text-body-secondary">(Requered)</span></label
+                  >
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    id="email"
+                    required
+                    placeholder="you@example.com"
+                    fdprocessedid="giiaswbm"
+                  />
+                  <div class="invalid-feedback">
+                    Please enter a valid email address for shipping updates.
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label for="password" class="form-label">Password</label>
+                  <input
+                    type="text"
+                    name="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="abc#@753"
+                    required
+                    fdprocessedid="0ibnzk"
+                  />
+                  <div class="invalid-feedback">
+                    Please enter your account password.
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label for="phone" class="form-label">Contact No</label>
+                  <input
+                    type="text"
+                    name="phone"
+                    class="form-control"
+                    id="phone"
+                    placeholder="0123456789"
+                    required
+                    fdprocessedid="0ibnzk"
+                  />
+                  <div class="invalid-feedback">
+                    Please enter your account contact no.
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                  <label for="zip" class="form-label"
+                    >Max Student
+                    <span class="text-body-secondary">(Optional)</span></label
+                  >
+                  <input
+                    type="text"
+                    name="max_student"
+                    class="form-control"
+                    id="zip"
+                    placeholder="100"
+                    fdprocessedid="ost62h"
+                  />
+                  <!-- <div class="invalid-feedback">Zip code required.</div> -->
+                </div>
+              </div>
+              <hr class="my-4" />
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="same-address"
+                  required
+                />
+                <label class="form-check-label" for="same-address"
+                  >I agree to the terms and conditions.</label
+                >
+                <div class="invalid-feedback">Please chack out the box.</div>
+              </div>
+              <!-- endline -->
+              <hr class="my-4" />
+              <div class="row gy-3"></div>
+              <!-- end formn -->
+              <button
+                class="w-100 btn btn-primary btn-lg"
+                type="submit"
+                fdprocessedid="vz7p8oq"
+              >
+                Continue to checkout
+              </button>
+              <p class="login-link">
+                Already have an account?
+                <a href="/login">Login</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </main>
+      <!-- footer sec -->
+      <footer class="my-5 pt-5 text-body-secondary text-center text-small">
+        <p class="mb-1">© 2017–2025 Company Name</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+      </footer>
+    </div>
+  </body>
+</html>

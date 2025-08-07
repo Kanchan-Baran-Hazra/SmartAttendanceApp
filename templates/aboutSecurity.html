@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SmartAttendance Security System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #1f1f1f;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+            color: #00bcd4;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            background-color: #1e1e1e;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .section h2 {
+            color: #03dac6;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        .section p {
+            color: #cccccc;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1f1f1f;
+            color: #888;
+            font-size: 14px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-right: 20px;
+            padding: 8px 14px;
+            color: #03dac6;
+            text-decoration: none;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid #03dac6;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: rgba(3, 218, 198, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="/" class="back-button">← Back</a>
+        <h1>SmartAttendance Security System</h1>
+    </header>
+
+
+    <div class="container">
+
+        <div class="section">
+            <h2>🔐 Identity Verification</h2>
+            <p>
+                Each student must log in securely using their registered email and password. We support additional
+                identity layers such as OTP verification and profile photo uploads to prevent fake logins.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>🧠 Face or OTP-based Attendance</h2>
+            <p>
+                Our system allows attendance to be taken via secure OTP or face verification. Admins can switch between
+                these modes depending on class needs. Face data is never stored permanently and is processed securely.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>🛡️ Data Protection</h2>
+            <p>
+                All sensitive information like passwords and OTPs are encrypted. User photos and attendance records are
+                stored in secure directories, and access is restricted only to authorized managers or admins.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>📈 Tamper-Proof Attendance</h2>
+            <p>
+                Attendance logs are timestamped and locked after submission. Students cannot mark attendance outside the
+                allowed time or location (if enabled). Logs are visible to both student and teacher for transparency.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>✅ Admin Controls</h2>
+            <p>
+                Institute managers have full control over student registration, subject access, and verification logs.
+                Only verified users can create or attend sessions. Admins can track activity with real-time reports.
+            </p>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; {{ year or "2025" }} SmartAttendance App. All rights reserved.
+    </footer>
+
+</body>
+
+</html>

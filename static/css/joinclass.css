@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #121212;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.join-container {
+  background-color: #1e1e1e;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+}
+
+.join-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #00ff99;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #00ff99;
+  background-color: #121212;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.btn-group button,
+.btn-group a {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.btn-join {
+  background-color: #00ff99;
+  color: #000;
+}
+
+.btn-join:hover {
+  background-color: #00cc77;
+}
+
+.btn-back {
+  background-color: #222;
+  color: #00ff99;
+  border: 1px solid #00ff99;
+}
+
+.btn-back:hover {
+  background-color: #333;
+}

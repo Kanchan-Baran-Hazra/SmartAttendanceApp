@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Attendance Visualization</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    header {
+      background-color: #1f1f1f;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: #00bcd4;
+    }
+
+    .back-button {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 8px 14px;
+      color: #03dac6;
+      text-decoration: none;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid #03dac6;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: rgba(3, 218, 198, 0.2);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      color: #03dac6;
+      font-size: 1.6rem;
+      margin-top: 0;
+    }
+
+    .section p {
+      color: #cccccc;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1f1f1f;
+      color: #888;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="/" class="back-button">← Back</a>
+    <h1>Attendance Visualization</h1>
+  </header>
+
+  <div class="container">
+
+    <div class="section">
+      <h2>📊 For Students</h2>
+      <p>
+        Students can easily view their attendance record using intuitive graphs and color-coded charts. A subject-wise percentage tracker shows how many classes were attended vs. missed. This helps students monitor their performance in real time and avoid short attendance issues.
+      </p>
+      <p>
+        Additionally, a calendar view allows students to track the exact days they were marked present or absent. Every record includes timestamps and the method used (OTP, Face, or Location), ensuring full transparency.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>🧑‍💼 For Institute Managers</h2>
+      <p>
+        Managers have access to visual dashboards that display overall attendance trends by subject, by class, and by student. Using pie charts, bar graphs, and heatmaps, they can quickly identify irregularities, inactive students, or underperforming batches.
+      </p>
+      <p>
+        Export options allow them to download detailed reports in Excel or PDF formats for meetings, audits, or compliance. Real-time filtering by date range, subject, or student makes decision-making faster and data-driven.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>📈 Smart Insights & Alerts</h2>
+      <p>
+        The system can notify students who are below the required attendance percentage and alert managers about consistent absentees. This ensures timely intervention and accountability from both ends.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>🔒 Privacy & Accuracy</h2>
+      <p>
+        All visual data is protected and shown only to the respective users. Students can’t see others’ attendance, while managers only view students under their own institute. Each chart is based on tamper-proof logs, making the system reliable and secure.
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; {{ year or "2025" }} SmartAttendance App. All rights reserved.
+  </footer>
+
+</body>
+</html>
