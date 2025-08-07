@@ -18,7 +18,7 @@ app=Flask(__name__)
 app.secret_key='abc123'
 
 # conector data_base
-app.config['SQLALCHEMY_DATABASE_URI']='mysql+mysqlconnector://root:kanchan%23%40123@localhost/SmartAttendance'
+app.config['SQLALCHEMY_DATABASE_URI']=r'sqlite:///mydatabase.db'
 app.config['SQLALCHEMY_PATH_MODIFICATION']=False
 
 # set email path
@@ -229,7 +229,7 @@ def home():
     session['manager']=True
     user=Maneger_Reg.query.filter_by(email=session.get('email')).first()
     classes=M_tasks.query.filter_by(user_id=user.institute_id).all()
-    return render_template('/manager/homem.html',classes=classes)
+    return render_template('/manager/homem.html',classes=classes,img=user.ins_logo)
 
 @app.route('/button_click', methods=['POST'])
 def button_click():
@@ -483,6 +483,7 @@ def otp_ver_stu():
 @app.route('/student_home',methods=['GET','POST'])
 def student_home():
     session['manager']=False
+    get_stuudentimg = Student_Reg.query.filter_by(email=session.get('email')).first().profile_picture
     get_stuudentId = Student_Reg.query.filter_by(email=session.get('email')).first().id
     get_email = S_task.query.filter_by(user_id=get_stuudentId).all()
     listof_allInfo = []
@@ -510,7 +511,7 @@ def student_home():
                 listof_allInfo.append(my_dict)
                 listof_allInfo.reverse()
 
-    return render_template('/student/Home.html', all_info=listof_allInfo)
+    return render_template('/student/Home.html', all_info=listof_allInfo,img=get_stuudentimg)
 
 
 @app.route('/student_dast')
